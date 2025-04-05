@@ -1,17 +1,35 @@
 FROM python:3.12-slim-bookworm
 
-# set the Docker working directory
+
+# update data from apt-get repositories
+RUN apt-get update && \
+    apt-get -y install unzip && \
+    apt-get -y install curl && \
+    apt-get -y install gnupg && \
+    apt-get -y install wget
+
+# sql server drivers and bcp
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+    curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
+    apt-get update && \
+    apt-get install -y unixodbc-dev && \
+    ACCEPT_EULA=Y apt-get install -y msodbcsql18 && \
+    ACCEPT_EULA=Y apt-get install -y mssql-tools18 && \
+    echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc && \
+    apt-get install -y libgssapi-krb5-2
+
+ENV PATH="$PATH:/opt/mssql-tools18/bin"
+
+# Set working directory
 WORKDIR /code
 
-# copy from the build context directory to the Docker working directory 
-COPY requirements.txt /code/
+# Copy requirements and install Python dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Install the Python libraries listed in the requirements file in the Docker working directory
-RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
+# Copy your source code and any databases
+COPY *.py ./
+COPY *.db ./
 
-# Copy code files and database from the build context directory to the Docker working directory
-COPY *.py /code/
-COPY *.db /code/
-
-# Launch the Uvicorn webserver and run the application
+# Command to launch your Uvicorn app
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
