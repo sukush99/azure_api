@@ -6,7 +6,7 @@ from database import Base
 class DimSymbol(Base):
     __tablename__ = "dim_symbol"
 
-    symbol_id = Column(Integer, primary_key=True, index=True)
+    symbol_id = Column(String, primary_key=True, index=True)
     symbol_name = Column(String)
     cik = Column(String)
     isin = Column(String)
@@ -25,9 +25,8 @@ class DimSymbol(Base):
 class BalanceSheet(Base):
     __tablename__ = "fact_balance_sheet"
 
-    symbol_id = Column(Integer, ForeignKey("dim_symbol.symbol_id"), primary_key=True, index=True)
+    symbol = Column(String, ForeignKey("dim_symbol.symbol_id"), primary_key=True, index=True)
     year = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
     accounts_payable_current = Column(Numeric)
     accounts_receivable_current = Column(Numeric)
     accumulated_oci_loss_net_of_tax = Column(Numeric)
