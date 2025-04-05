@@ -7,7 +7,6 @@ class DimSymbol(Base):
     __tablename__ = "dim_symbol"
 
     symbol_id = Column(Integer, primary_key=True, index=True)
-    symbol = Column(String, index=True)
     symbol_name = Column(String)
     cik = Column(String)
     isin = Column(String)
