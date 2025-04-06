@@ -8,8 +8,8 @@ uvicorn:
 
 docker-build:
 	@echo "Building Docker image..."
-	docker build -t sntj_api .
+	docker build -t sntj-api .
 
 docker-run:
 	@echo "Running Docker container..."
-	docker run --env-file azure_conn.env  --publish 80:80 --name sntj_api_container7 sntj_api
+	docker run --env-file azure_conn.env  --publish 80:80 --name sntj-api-aws-container sntj-api
