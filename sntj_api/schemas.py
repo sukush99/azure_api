@@ -1,6 +1,7 @@
 from pydantic import BaseModel, ConfigDict
 from typing import Optional
 from decimal import Decimal
+from datetime import date
 
 class Symbol(BaseModel):
     model_config = ConfigDict(
@@ -21,8 +22,8 @@ class Symbol(BaseModel):
     sic_name : Optional[str] = None
 
 
-
 class BalanceSheet(BaseModel):
+
     model_config = ConfigDict(
         from_attributes=True,
     )
@@ -119,3 +120,403 @@ class BalanceSheet(BaseModel):
     other_long_term_investments : Optional[Decimal] = None
     net_ppe_finance_lease_assets : Optional[Decimal] = None
     treasury_stock_common_value : Optional[Decimal] = None
+
+class Exchange(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+    )
+    exchange_ticker_id : str
+    exchange_id : Optional[str] = None
+    exchange_name : Optional[str] = None
+    acronym : Optional[str] = None
+    country_code : Optional[str] = None
+    city : Optional[str] = None
+    market_category_code : Optional[str] = None
+    exchange_status : Optional[str] = None
+
+
+class Timestamp(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+    )
+    timestamp_ms: int
+    _date: Optional[date] = None
+    day_of_the_week: Optional[str] = None
+    month: Optional[int] = None
+    year: Optional[int] = None
+    quarter: Optional[int] = None
+    fiscal_year: Optional[int] = None
+    is_weekend: Optional[bool] = None
+    is_public_holiday: Optional[bool] = None
+
+
+class OHLCDaily(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+    )
+    symbol_id: str
+    timestamp_ms: int
+    exchange_id: str
+
+    _open: Optional[Decimal] = None
+    _high: Optional[Decimal] = None
+    _low: Optional[Decimal] = None
+    _close: Optional[Decimal] = None
+    volume: Optional[int] = None
+    adj_high: Optional[Decimal] = None
+    adj_close: Optional[Decimal] = None
+    adj_low: Optional[Decimal] = None
+    adj_open: Optional[Decimal] = None
+    adj_volume: Optional[int] = None
+    split_factor: Optional[Decimal] = None
+    dividend: Optional[Decimal] = None
+    ADJ_SMA_10: Optional[Decimal] = None
+    ADJ_SMA_20: Optional[Decimal] = None
+    ADJ_SMA_50: Optional[Decimal] = None
+    ADJ_SMA_100: Optional[Decimal] = None
+    ADJ_SMA_200: Optional[Decimal] = None
+    ADJ_EMA_12: Optional[Decimal] = None
+    ADJ_EMA_26: Optional[Decimal] = None
+    ADJ_EMA_50: Optional[Decimal] = None
+    ADJ_EMA_100: Optional[Decimal] = None
+    ADJ_WMA_30: Optional[Decimal] = None
+    ADJ_HMA_30: Optional[Decimal] = None
+    ADJ_DEMA_30: Optional[Decimal] = None
+    ADJ_TEMA_30: Optional[Decimal] = None
+    ADJ_RSI_14: Optional[Decimal] = None
+    ADJ_RSI_7: Optional[Decimal] = None
+    ADJ_MACD: Optional[Decimal] = None
+    ADJ_MACD_signal: Optional[Decimal] = None
+    ADJ_MACD_hist: Optional[Decimal] = None
+    ADJ_Stoch_K: Optional[Decimal] = None
+    ADJ_Stoch_D: Optional[Decimal] = None
+    ADJ_ATR_14: Optional[Decimal] = None
+    ADJ_ADX_14: Optional[Decimal] = None
+    ADJ_CCI_14: Optional[Decimal] = None
+    ADJ_WILLR_14: Optional[Decimal] = None
+    ADJ_AD: Optional[Decimal] = None
+    ADJ_OBV: Optional[Decimal] = None
+    ADJ_SAR: Optional[Decimal] = None
+    ADJ_MOM_10: Optional[Decimal] = None
+    ADJ_ROC_10: Optional[Decimal] = None
+    ADJ_MFI_14: Optional[Decimal] = None
+    ADJ_ULTOSC: Optional[Decimal] = None
+    ADJ_TRIX: Optional[Decimal] = None
+    ADJ_KC_upper: Optional[Decimal] = None
+    ADJ_KC_middle: Optional[Decimal] = None
+    ADJ_KC_adj_lower: Optional[Decimal] = None
+    ADJ_Aroon_Up: Optional[Decimal] = None
+    ADJ_Aroon_Down: Optional[Decimal] = None
+    ADJ_Donchian_Upper: Optional[Decimal] = None
+    ADJ_Donchian_Middle: Optional[Decimal] = None
+    ADJ_Donchian_adj_lower: Optional[Decimal] = None
+    ADJ_CMO_14: Optional[Decimal] = None
+    ADJ_Stoch_RSI_K: Optional[Decimal] = None
+    ADJ_Stoch_RSI_D: Optional[Decimal] = None
+    ADJ_EFI_13: Optional[Decimal] = None
+    ADJ_VWAP: Optional[Decimal] = None
+    ADJ_Ichimoku_Tenkan_Sen: Optional[Decimal] = None
+    ADJ_Ichimoku_Kijun_Sen: Optional[Decimal] = None
+    ADJ_Ichimoku_Senkou_Span_A: Optional[Decimal] = None
+    ADJ_Ichimoku_Senkou_Span_B: Optional[Decimal] = None
+    ADJ_Ichimoku_Chikou_Span: Optional[Decimal] = None
+    ADJ_Pivot_Point: Optional[Decimal] = None
+    ADJ_R1: Optional[Decimal] = None
+    ADJ_S1: Optional[Decimal] = None
+    ADJ_R2: Optional[Decimal] = None
+    ADJ_S2: Optional[Decimal] = None
+    ADJ_Vortex_Plus: Optional[Decimal] = None
+    ADJ_Vortex_Minus: Optional[Decimal] = None
+    SMA_10: Optional[Decimal] = None
+    SMA_20: Optional[Decimal] = None
+    SMA_50: Optional[Decimal] = None
+    SMA_100: Optional[Decimal] = None
+    SMA_200: Optional[Decimal] = None
+    EMA_12: Optional[Decimal] = None
+    EMA_26: Optional[Decimal] = None
+    EMA_50: Optional[Decimal] = None
+    EMA_100: Optional[Decimal] = None
+    WMA_30: Optional[Decimal] = None
+    HMA_30: Optional[Decimal] = None
+    DEMA_30: Optional[Decimal] = None
+    TEMA_30: Optional[Decimal] = None
+    RSI_14: Optional[Decimal] = None
+    RSI_7: Optional[Decimal] = None
+    MACD: Optional[Decimal] = None
+    MACD_signal: Optional[Decimal] = None
+    MACD_hist: Optional[Decimal] = None
+    Stoch_K: Optional[Decimal] = None
+    Stoch_D: Optional[Decimal] = None
+    ATR_14: Optional[Decimal] = None
+    ADX_14: Optional[Decimal] = None
+    CCI_14: Optional[Decimal] = None
+    WILLR_14: Optional[Decimal] = None
+    AD: Optional[Decimal] = None
+    OBV: Optional[Decimal] = None
+    SAR: Optional[Decimal] = None
+    MOM_10: Optional[Decimal] = None
+    ROC_10: Optional[Decimal] = None
+    MFI_14: Optional[Decimal] = None
+    ULTOSC: Optional[Decimal] = None
+    TRIX: Optional[Decimal] = None
+    KC_upper: Optional[Decimal] = None
+    KC_middle: Optional[Decimal] = None
+    KC_lower: Optional[Decimal] = None
+    Aroon_Up: Optional[Decimal] = None
+    Aroon_Down: Optional[Decimal] = None
+    Donchian_Upper: Optional[Decimal] = None
+    Donchian_Middle: Optional[Decimal] = None
+    Donchian_Lower: Optional[Decimal] = None
+    CMO_14: Optional[Decimal] = None
+    Stoch_RSI_K: Optional[Decimal] = None
+    Stoch_RSI_D: Optional[Decimal] = None
+    EFI_13: Optional[Decimal] = None
+    VWAP: Optional[Decimal] = None
+    Ichimoku_Tenkan_Sen: Optional[Decimal] = None
+    Ichimoku_Kijun_Sen: Optional[Decimal] = None
+    Ichimoku_Senkou_Span_A: Optional[Decimal] = None
+    Ichimoku_Senkou_Span_B: Optional[Decimal] = None
+    Ichimoku_Chikou_Span: Optional[Decimal] = None
+    Pivot_Point: Optional[Decimal] = None
+    R1: Optional[Decimal] = None
+    S1: Optional[Decimal] = None
+    R2: Optional[Decimal] = None
+    S2: Optional[Decimal] = None
+    Vortex_Plus: Optional[Decimal] = None
+    Vortex_Minus: Optional[Decimal] = None
+
+class CashFlow(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+    )
+    symbol: str
+    year: int
+
+    cash_equivalents_restricted_cash: Optional[Decimal] = None
+    cash_equivalents_restricted_cash_change_exchange: Optional[Decimal] = None
+    deferred_income_tax_expense_benefit: Optional[Decimal] = None
+    depreciation_depletion___amortization: Optional[Decimal] = None
+    income_taxes_paid__: Optional[Decimal] = None
+    increase_decrease_in_accounts_payable: Optional[Decimal] = None
+    increase_decrease_in_accounts_receivable: Optional[Decimal] = None
+    change_contract_customer_liability: Optional[Decimal] = None
+    increase_decrease_in_inventories: Optional[Decimal] = None
+    increase_decrease_in_other_operating_assets: Optional[Decimal] = None
+    change_other_operating_liabilities: Optional[Decimal] = None
+    increase_decrease_in_other_receivables: Optional[Decimal] = None
+    interest_paid__: Optional[Decimal] = None
+    __cash_provided_by_used_in_financing_activities: Optional[Decimal] = None
+    __cash_provided_by_used_in_investing_activities: Optional[Decimal] = None
+    __cash_provided_by_used_in_operating_activities: Optional[Decimal] = None
+    __income_loss: Optional[Decimal] = None
+    other_noncash_income_expense: Optional[Decimal] = None
+    payments_for_proceeds_from_other_investing_activities: Optional[Decimal] = None
+    payments_for_repurchase_of_common_stock: Optional[Decimal] = None
+    payments_of_dividends: Optional[Decimal] = None
+    payments_tax_withholding_share_compensation: Optional[Decimal] = None
+    payments_to_acquire_available_for_sale_securities_debt: Optional[Decimal] = None
+    payments_acquire_businesses_net_cash: Optional[Decimal] = None
+    payments_to_acquire_other_investments: Optional[Decimal] = None
+    payments_to_acquire_property_plant___equipment: Optional[Decimal] = None
+    proceeds_from_issuance_of_common_stock: Optional[Decimal] = None
+    proceeds_from_issuance_of_long_term_debt: Optional[Decimal] = None
+    proceeds_maturities_prepayments_available_sale: Optional[Decimal] = None
+    proceeds_other_financing_activities: Optional[Decimal] = None
+    proceeds_from_repayments_of_commercial_paper: Optional[Decimal] = None
+    proceeds_sale_maturity_other_investments: Optional[Decimal] = None
+    proceeds_from_sale_of_available_for_sale_securities_debt: Optional[Decimal] = None
+    repayments_of_long_term_debt: Optional[Decimal] = None
+    share_based_compensation: Optional[Decimal] = None
+    change_funds_payable_customers: Optional[Decimal] = None
+    change_operating_lease_liabilities: Optional[Decimal] = None
+    change_operating_lease_right_use_assets: Optional[Decimal] = None
+    investment_impairment_charges: Optional[Decimal] = None
+    payment_capped_calls_convertible_notes: Optional[Decimal] = None
+    proceeds_longterm_debt_warrants: Optional[Decimal] = None
+    asset_impairment_charges: Optional[Decimal] = None
+    deferred_income_taxes___tax_credits: Optional[Decimal] = None
+    exchange_rate_effect_cash_equivalents_restricted_cash: Optional[Decimal] = None
+    fair_value_adjustment_of_warrants: Optional[Decimal] = None
+    foreign_currency_transaction_gain_loss: Optional[Decimal] = None
+    gain_loss_on_sale_of_investments: Optional[Decimal] = None
+    gains_losses_on_extinguishment_of_debt: Optional[Decimal] = None
+    income_taxes_paid: Optional[Decimal] = None
+    increase_decrease_in_accrued_liabilities: Optional[Decimal] = None
+    increase_decrease_in_deferred_revenue: Optional[Decimal] = None
+    change_prepaid_deferred_expense_assets: Optional[Decimal] = None
+    other_depreciation___amortization: Optional[Decimal] = None
+    other_operating_activities_cash_flow_statement: Optional[Decimal] = None
+    payments_of_debt_extinguishment_costs: Optional[Decimal] = None
+    payments_to_acquire_short_term_investments: Optional[Decimal] = None
+    proceeds_from_convertible_debt: Optional[Decimal] = None
+    proceeds_from_issuance_initial_public_offering: Optional[Decimal] = None
+    proceeds_issuance_shares_incentive_compensation: Optional[Decimal] = None
+    proceeds_issuance_shares_incentive_compensation_options: Optional[Decimal] = None
+    proceeds_maturities_prepayments_shortterm_investments: Optional[Decimal] = None
+    proceeds_sale_maturity_marketable_securities: Optional[Decimal] = None
+    proceeds_from_sale_of_short_term_investments: Optional[Decimal] = None
+    proceeds_from_stock_options_exercised: Optional[Decimal] = None
+    provision_for_doubtful_accounts: Optional[Decimal] = None
+    business_combination_equity_awards: Optional[Decimal] = None
+    deferred_tax_intra_entity_intangible: Optional[Decimal] = None
+    fair_value_adjustment_performance_obligations: Optional[Decimal] = None
+    change_capitalized_contract_costs: Optional[Decimal] = None
+    noncash_acquisition_consideration: Optional[Decimal] = None
+    repayments_convertible_debt_capped_calls: Optional[Decimal] = None
+    capitalized_contract_cost_amortization: Optional[Decimal] = None
+    depreciation___amortization: Optional[Decimal] = None
+    finance_lease_principal_payments: Optional[Decimal] = None
+    gain_loss_on_investments: Optional[Decimal] = None
+    change_accounts_payable_accrued_liabilities: Optional[Decimal] = None
+    increase_decrease_in_operating_lease_liability: Optional[Decimal] = None
+    payments_to_acquire_longterm_investments: Optional[Decimal] = None
+    proceeds_from_issuance_of_medium_term_notes: Optional[Decimal] = None
+    proceeds_from_sale_of_longterm_investments: Optional[Decimal] = None
+    proceeds_from_stock_plans: Optional[Decimal] = None
+    repayments_of_long_term_lines_of_credit: Optional[Decimal] = None
+    profit_loss: Optional[Decimal] = None
+    tsla__depreciation_amortization___impairment: Optional[Decimal] = None
+    inventory_write_down: Optional[Decimal] = None
+    foreign_currency_transaction_gain_loss_unrealized: Optional[Decimal] = None
+    tsla__noncash_interest_income_expense___other_operating_activities: Optional[Decimal] = None
+    tsla__gain_loss_on_digital_assets: Optional[Decimal] = None
+    tsla__increase_decrease_in_operating_lease_vehicles: Optional[Decimal] = None
+    tsla__payments_for_solar_energy_systems___of_sales: Optional[Decimal] = None
+    tsla__proceeds_from_sales_of_digital_assets: Optional[Decimal] = None
+    tsla__payments_to_acquire_other_indefinite_lived_intangible_assets: Optional[Decimal] = None
+    payments_to_acquire_investments: Optional[Decimal] = None
+    proceeds_from_sale_maturity___collections_of_investments: Optional[Decimal] = None
+    tsla__government_grant_receipt: Optional[Decimal] = None
+    proceeds_from_issuance_of_debt: Optional[Decimal] = None
+    repayments_of_convertible_debt: Optional[Decimal] = None
+    payments_of_debt_issuance_costs: Optional[Decimal] = None
+    payments_to_minority_shareholders: Optional[Decimal] = None
+    tsla__payments_for_buy_outs_of_noncontrolling_interests_in_subsidiaries: Optional[Decimal] = None
+    effect_of_exchange_rate_on_cash: Optional[Decimal] = None
+    cash_cash_equivalents: Optional[Decimal] = None
+    noncash_or_part_noncash_acquisition_value_of_assets_acquired1: Optional[Decimal] = None
+    capital_expenditures_incurred_but_not_yet_paid: Optional[Decimal] = None
+    exchange_rate_effect_cash_equivalents: Optional[Decimal] = None
+    change_accrued_liabilities_operating_liabilities: Optional[Decimal] = None
+    payment_contingent_consideration_liability_financing: Optional[Decimal] = None
+    payments_derivative_instrument_financing: Optional[Decimal] = None
+    payments_proceeds_derivative_instrument_investing: Optional[Decimal] = None
+    payments_to_acquire_productive_assets: Optional[Decimal] = None
+    proceeds_sale_maturity_available_sale: Optional[Decimal] = None
+    amortization_client_incentives: Optional[Decimal] = None
+    amortization_volume_support_incentives: Optional[Decimal] = None
+    equity_investments_fair_value_income: Optional[Decimal] = None
+    change_accrued_litigation: Optional[Decimal] = None
+    change_client_incentives: Optional[Decimal] = None
+    change_settlement_payable: Optional[Decimal] = None
+    change_settlement_receivable: Optional[Decimal] = None
+    change_volume_support_incentives: Optional[Decimal] = None
+    noncash_contribution_expense: Optional[Decimal] = None
+    proceeds_sharebased_tax_compensation: Optional[Decimal] = None
+    territory_covered_losses_post_acquisition: Optional[Decimal] = None
+
+
+class IncomeStatement(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+    )
+    symbol: str
+    year: int
+
+    oci_derivative_reclassification_after_tax: Optional[Decimal] = None
+    oci_derivative_after_reclassification_tax: Optional[Decimal] = None
+    oci_derivative_before_reclassification_after_tax: Optional[Decimal] = None
+    comprehensive_income___of_tax: Optional[Decimal] = None
+    __income_loss: Optional[Decimal] = None
+    oci_available_sale_securities_net_tax: Optional[Decimal] = None
+    oci_cashflow_hedge_reclassification_after_tax: Optional[Decimal] = None
+    oci_derivatives_hedges_net_tax: Optional[Decimal] = None
+    oci_foreign_currency_translation_net_tax: Optional[Decimal] = None
+    oci_net_tax_parent: Optional[Decimal] = None
+    oci_reclassification_sale_securities_net_tax: Optional[Decimal] = None
+    oci_reclassification_derivatives_net_tax: Optional[Decimal] = None
+    oci_unrealized_derivatives_net_tax: Optional[Decimal] = None
+    oci_unrealized_securities_net_tax: Optional[Decimal] = None
+    oci_cashflow_hedge_after_reclassification_tax_parent: Optional[Decimal] = None
+    oci_foreign_currency_translation_net_tax_parent: Optional[Decimal] = None
+    oci_foreign_currency_translation_before_tax_parent: Optional[Decimal] = None
+    oci_before_tax_parent: Optional[Decimal] = None
+    oci_tax_parent: Optional[Decimal] = None
+    oci_unrealized_securities_before_tax: Optional[Decimal] = None
+    profit_loss: Optional[Decimal] = None
+    unrealized_gain_loss_on_investments: Optional[Decimal] = None
+    tsla____loss_realized___included_in___income: Optional[Decimal] = None
+    comprehensive_income_net_tax_noncontrolling: Optional[Decimal] = None
+    comprehensive_income___of_tax_attributable_to_noncontrolling_interest: Optional[Decimal] = None
+    oci_pension_amortization_prior_service_before_tax: Optional[Decimal] = None
+    oci_pension_amortization_prior_service_tax: Optional[Decimal] = None
+    oci_cashflow_hedge_reclassification_before_tax: Optional[Decimal] = None
+    oci_cashflow_hedge_reclassification_tax: Optional[Decimal] = None
+    oci_foreign_currency_translation_before_tax: Optional[Decimal] = None
+    oci_foreign_currency_translation_tax: Optional[Decimal] = None
+    other_comprehensive_income_loss___of_tax: Optional[Decimal] = None
+    oci_reclassification_sale_securities_before_tax: Optional[Decimal] = None
+    oci_reclassification_sale_securities_tax: Optional[Decimal] = None
+    oci_unrealized_securities_tax: Optional[Decimal] = None
+    oci_cashflow_hedge: Optional[Decimal] = None
+    oci_cashflow_hedge_tax: Optional[Decimal] = None
+    oci_cashflow_hedge_before_reclassification_tax_avg: Optional[Decimal] = None
+    oci_pension_postretirement_before_adjustments_tax_avg: Optional[Decimal] = None
+    oci_cashflow_hedge_investment_before_reclassification_tax_avg: Optional[Decimal] = None
+
+class StatementOperation(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+    )
+    symbol: str
+    year: int
+
+    earnings_per_share_basic: Optional[Decimal] = None
+    earnings_per_share_diluted: Optional[Decimal] = None
+    gross_profit: Optional[Decimal] = None
+    income_continuing_operations_before_tax: Optional[Decimal] = None
+    income_tax_expense_benefit: Optional[Decimal] = None
+    __income_loss: Optional[Decimal] = None
+    nonoperating_income_expense: Optional[Decimal] = None
+    operating_expenses: Optional[Decimal] = None
+    operating_income_loss: Optional[Decimal] = None
+    research___development_expense: Optional[Decimal] = None
+    selling_general___administrative_expense: Optional[Decimal] = None
+    weighted_average_diluted_shares: Optional[Decimal] = None
+    weighted_average_basic_shares: Optional[Decimal] = None
+    cost_of_goods___services_sold_avg: Optional[Decimal] = None
+    revenue_contract_customer_excluding_tax_avg: Optional[Decimal] = None
+    operations_support_expense: Optional[Decimal] = None
+    cost_of_revenue: Optional[Decimal] = None
+    costs___expenses: Optional[Decimal] = None
+    general___administrative_expense: Optional[Decimal] = None
+    income_continuing_operations_basic_share: Optional[Decimal] = None
+    income_continuing_operations_diluted_share: Optional[Decimal] = None
+    interest_income_expense_nonoperating__: Optional[Decimal] = None
+    investment_income_nonoperating: Optional[Decimal] = None
+    other_nonoperating_income_expense: Optional[Decimal] = None
+    restructuring_charges: Optional[Decimal] = None
+    revenue_contract_customer_excluding_tax: Optional[Decimal] = None
+    selling___marketing_expense: Optional[Decimal] = None
+    fair_value_adjustment_performance_obligations: Optional[Decimal] = None
+    gain_loss_on_investments: Optional[Decimal] = None
+    income_continuing_operations_before_tax_equity_investments: Optional[Decimal] = None
+    other_nonoperating_expense: Optional[Decimal] = None
+    tsla__restructuring___other_expenses: Optional[Decimal] = None
+    investment_income_interest: Optional[Decimal] = None
+    interest_expense_nonoperating: Optional[Decimal] = None
+    profit_loss: Optional[Decimal] = None
+    __income_loss_attributable_to_noncontrolling_interest: Optional[Decimal] = None
+    cost_of_revenue_avg: Optional[Decimal] = None
+    communications___information_technology: Optional[Decimal] = None
+    depreciation___amortization: Optional[Decimal] = None
+    interest_income_expense__: Optional[Decimal] = None
+    labor___related_expense: Optional[Decimal] = None
+    loss_contingency_loss_in_period: Optional[Decimal] = None
+    marketing___advertising_expense: Optional[Decimal] = None
+    professional_fees: Optional[Decimal] = None
+    revenues: Optional[Decimal] = None
+    earnings_per_share_basic_avg: Optional[Decimal] = None
+    earnings_per_share_diluted_avg: Optional[Decimal] = None
+    weighted_average_diluted_shares_avg: Optional[Decimal] = None
+    weighted_average_basic_shares_avg: Optional[Decimal] = None
